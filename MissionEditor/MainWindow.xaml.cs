@@ -22,6 +22,8 @@ namespace MissionEditor
     {
         public MainWindow()
         {
+            DataProcess dataProcess = new DataProcess();
+            dataProcess.GetFieldInfos();
             InitializeComponent();
         }
     }
