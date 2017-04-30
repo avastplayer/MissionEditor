@@ -5,8 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MissionEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="970.655">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="421*" />
+            <ColumnDefinition Width="96*" />
+        </Grid.ColumnDefinitions>
+        <ListView HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Grid.ColumnSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn />
+                </GridView>
+            </ListView.View>
+            <DataGrid Height="266" Width="478" Name="MissionListView" />
+            <Image Height="100" Width="100" />
+        </ListView>
+        <Image HorizontalAlignment="Left" Height="100" Margin="226,118,0,0" VerticalAlignment="Top" Width="100" Name="Head" />
+        <TreeView HorizontalAlignment="Left" Height="299" Margin="527,10,0,0" VerticalAlignment="Top" Width="426" Grid.ColumnSpan="2" Name="TreeView1" />
     </Grid>
 </Window>

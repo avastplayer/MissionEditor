@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MissionEditor" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ConfigFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\ProjectResource\autoconfig\</Value>
+    </Setting>
+    <Setting Name="ImageFolderPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\ProjectResource\imagesets\</Value>
+    </Setting>
+    <Setting Name="ItemAttrName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">knight.gsp.item.citemattr.xml</Value>
+    </Setting>
+    <Setting Name="NpcConfigFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">knight.gsp.npc.cnpcconfig.xml</Value>
+    </Setting>
+    <Setting Name="NpcShapeFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">knight.gsp.npc.cnpcshape.xml</Value>
+    </Setting>
+    <Setting Name="MapConfigFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">knight.gsp.map.cmapconfig.xml</Value>
+    </Setting>
+    <Setting Name="HeadImageset" Type="System.String" Scope="User">
+      <Value Profile="(Default)">roleandmonster</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
