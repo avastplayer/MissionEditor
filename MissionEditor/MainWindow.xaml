@@ -5,22 +5,96 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MissionEditor"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="970.655">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="421*" />
-            <ColumnDefinition Width="96*" />
-        </Grid.ColumnDefinitions>
-        <ListView HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="497" Grid.ColumnSpan="2">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn />
-                </GridView>
-            </ListView.View>
-            <DataGrid Height="266" Width="478" Name="MissionListView" />
-            <Image Height="100" Width="100" />
-        </ListView>
-        <Image HorizontalAlignment="Left" Height="100" Margin="226,118,0,0" VerticalAlignment="Top" Width="100" Name="Head" />
-        <TreeView HorizontalAlignment="Left" Height="299" Margin="527,10,0,0" VerticalAlignment="Top" Width="426" Grid.ColumnSpan="2" Name="TreeView1" />
-    </Grid>
+        Title="MainWindow" Height="768" Width="1024">
+    <DockPanel LastChildFill="False" Margin="6,6,6,6">
+        <Menu DockPanel.Dock="Top" Height="40" Margin="6,0" />
+        <Grid DockPanel.Dock="Left" Width="400">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBox Margin="3" Grid.Row="0" Name="SearchTextBar" />
+            <DataGrid Margin="3" Grid.Row="1" Name="MissionDataGrid" MouseUp="MissionDataGrid_click" />
+        </Grid>
+        <Grid DockPanel.Dock="Right" Width="400" Name="MissionPropertiesGrid">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="触发类型" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="NpcID" />
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="场景" />
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="场景区域" />
+            <TextBlock Grid.Row="3" Grid.Column="1" Text="左上" />
+            <TextBlock Grid.Row="4" Grid.Column="1" Text="右下" />
+            <TextBlock Grid.Row="5" Grid.Column="0" Text="回收物品数量" />
+            <TextBlock Grid.Row="5" Grid.Column="2" Text="回收物品" />
+            <TextBlock Grid.Row="6" Grid.Column="0" Text="最少结束步骤" />
+            <TextBlock Grid.Row="6" Grid.Column="2" Text="单步结束概率" />
+            <TextBlock Grid.Row="7" Grid.Column="0" Text="最大结束步骤" />
+            <TextBlock Grid.Row="7" Grid.Column="2" Text="可否组队完成" />
+            <TextBlock Grid.Row="8" Grid.Column="0" Text="限时时间（分钟）" />
+            <TextBlock Grid.Row="9" Grid.Column="0" Text="是否重新计时" />
+            <TextBlock Grid.Row="10" Grid.Column="0" Text="回收金钱数量" />
+            <TextBlock Grid.Row="10" Grid.Column="2" Text="回收宠物ID" />
+            <TextBlock Grid.Row="11" Grid.Column="0" Text="使用物品ID" />
+            <TextBlock Grid.Row="11" Grid.Column="2" Text="其他方式" />
+            <Expander Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="MissionTypeExpander">
+                <Expander.Content>
+                    <StackPanel>
+                        <TextBlock Text="10:点击NPC" />
+                        <TextBlock Text="11:给予金钱" />
+                        <TextBlock Text="12:给予物品" />
+                        <TextBlock Text="13:给予宠物" />
+                        <TextBlock Text="17:答题" />
+                        <TextBlock Text="22:使用物品" />
+                        <TextBlock Text="32:练功区掉落物品" />
+                        <TextBlock Text="34:练功区战斗计场次" />
+                        <TextBlock Text="35:练功区战斗计数量" />
+                        <TextBlock Text="50:无条件" />
+                        <TextBlock Text="54:步数触发" />
+                        <TextBlock Text="56:区域触发\护送" />
+                        <TextBlock Text="40:NPC战斗" />
+                        <TextBlock Text="58:等级限制任务" />
+                        <TextBlock Text="59:特殊类型" />
+                    </StackPanel>
+                </Expander.Content>
+            </Expander>
+
+            <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoNpcIDTextBox" />
+            <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMapIDTextBox" />
+            <TextBox Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Name="ActiveInfoLeftPosTextBox" />
+            <TextBox Grid.Row="3" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTopPosTextBox" />
+            <TextBox Grid.Row="4" Grid.Column="2" VerticalAlignment="Top" Name="ActiveInfoRightPosTextBox" />
+            <TextBox Grid.Row="4" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoBottomPosTextBox" />
+            <TextBox Grid.Row="5" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTargetIDTextBox" />
+            <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoTargetNumTextBox" />
+            <TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMiniStepTextBox" />
+            <TextBox Grid.Row="6" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoStepProbabilityTextBox" />
+            <TextBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMaxStepTextBox" />
+            <Expander Grid.Row="7" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTeamStateExpander" />
+            <TextBox Grid.Row="8" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoTimeLimitTextBox" />
+            <TextBox Grid.Row="9" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoIsRestartTimerTextBox" />
+            <TextBox Grid.Row="10" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoGiveBackMoneyTextBox" />
+            <TextBox Grid.Row="10" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoGiveBackPetIDTextBox" />
+            <TextBox Grid.Row="11" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoUseItemIDTextBox" />
+            <TextBox Grid.Row="11" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoOtherTypeTextBox" />
+        </Grid>
+    </DockPanel>
 </Window>

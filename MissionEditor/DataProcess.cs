@@ -7,7 +7,7 @@ namespace MissionEditor
 {
     internal class DataProcess
     {
-        public DataTable TempletDataTable { get; set; }
+        public DataTable TempletDataTable { get; set; } = new DataTable();
 
         public DataProcess()
         {

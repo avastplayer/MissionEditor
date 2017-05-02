@@ -4,7 +4,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,17 +21,17 @@ namespace MissionEditor
     /// </summary>
     public partial class MainWindow
     {
+        public AssetManager AssetManager = new AssetManager();
+
         public MainWindow()
         {
             InitializeComponent();
-            AssetManager assetManager = new AssetManager();
-            MissionListView.ItemsSource = GetExcelData(assetManager.MissionDatatable);
+            MissionDataGrid.ItemsSource = GetExcelData(AssetManager.MissionDatatable);
             //MissionListView.ItemsSource = assetManager.MissionDatatable.DefaultView;
 
             DataProcess dataProcess = new DataProcess();
             dataProcess.CreateXmlFile();
 
-            return;
             //assetManager.GetNpcInfo(14039, out string npcName, out int headId, out string mapName);
             //Console.WriteLine(npcName);
             //Console.WriteLine(mapName);
@@ -46,5 +45,41 @@ namespace MissionEditor
             string[] strColumns = { "MissionID", "MissionName", "MissionTypeString" };
             return missionDatatable.DefaultView.ToTable(missionDatatable.TableName, true, strColumns).DefaultView;
         }
+
+        private void MissionDataGrid_click(object sender, MouseButtonEventArgs e)
+        {
+            int selectDataRow = GetSelectedRow();
+            ActiveInfoNpcIDTextBox.Text = AssetManager.MissionDatatable.Rows[selectDataRow]["ActiveInfoNpcID"]
+                .ToString();
+            //Binding binding = new Binding()
+            //{
+            //    Source = AssetManager.MissionDatatable,
+            //    Path = new PropertyPath("[0][ActiveInfoNpcID]")
+            //};
+            //ActiveInfoNpcIDTextBox.SetBinding(TextBox.TextProperty, binding);
+        }
+
+        private int GetSelectedRow()
+        {
+            if (MissionDataGrid != null && MissionDataGrid.SelectedCells.Count != 0)
+            {
+                return MissionDataGrid.SelectedIndex;
+            }
+
+            return -1;
+        }
+
+        //private void BindTextBoxValue(TextBox textBox, string value)
+        //{
+        //    AssetManager assetManager = new AssetManager();
+        //    int selectDataRow = GetSelectedRow();
+        //    ;
+        //    Binding binding = new Binding()
+        //    {
+        //        Source = assetManager.MissionDatatable,
+        //        Path = new PropertyPath("[selectDataRow][ActiveInfoNpcID]")
+        //    };
+        //    textBox.SetBinding(TextBox.TextProperty, binding);
+        //}
     }
 }
