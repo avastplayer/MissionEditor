@@ -3,98 +3,379 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MissionEditor"
+        xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024">
-    <DockPanel LastChildFill="False" Margin="6,6,6,6">
-        <Menu DockPanel.Dock="Top" Height="40" Margin="6,0" />
-        <Grid DockPanel.Dock="Left" Width="400">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="25" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBox Margin="3" Grid.Row="0" Name="SearchTextBar" />
-            <DataGrid Margin="3" Grid.Row="1" Name="MissionDataGrid" MouseUp="MissionDataGrid_click" />
-        </Grid>
-        <Grid DockPanel.Dock="Right" Width="400" Name="MissionPropertiesGrid">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="触发类型" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="NpcID" />
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="场景" />
-            <TextBlock Grid.Row="3" Grid.Column="0" Text="场景区域" />
-            <TextBlock Grid.Row="3" Grid.Column="1" Text="左上" />
-            <TextBlock Grid.Row="4" Grid.Column="1" Text="右下" />
-            <TextBlock Grid.Row="5" Grid.Column="0" Text="回收物品数量" />
-            <TextBlock Grid.Row="5" Grid.Column="2" Text="回收物品" />
-            <TextBlock Grid.Row="6" Grid.Column="0" Text="最少结束步骤" />
-            <TextBlock Grid.Row="6" Grid.Column="2" Text="单步结束概率" />
-            <TextBlock Grid.Row="7" Grid.Column="0" Text="最大结束步骤" />
-            <TextBlock Grid.Row="7" Grid.Column="2" Text="可否组队完成" />
-            <TextBlock Grid.Row="8" Grid.Column="0" Text="限时时间（分钟）" />
-            <TextBlock Grid.Row="9" Grid.Column="0" Text="是否重新计时" />
-            <TextBlock Grid.Row="10" Grid.Column="0" Text="回收金钱数量" />
-            <TextBlock Grid.Row="10" Grid.Column="2" Text="回收宠物ID" />
-            <TextBlock Grid.Row="11" Grid.Column="0" Text="使用物品ID" />
-            <TextBlock Grid.Row="11" Grid.Column="2" Text="其他方式" />
-            <Expander Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" Grid.ColumnSpan="2" Name="MissionTypeExpander">
-                <Expander.Content>
-                    <StackPanel>
-                        <TextBlock Text="10:点击NPC" />
-                        <TextBlock Text="11:给予金钱" />
-                        <TextBlock Text="12:给予物品" />
-                        <TextBlock Text="13:给予宠物" />
-                        <TextBlock Text="17:答题" />
-                        <TextBlock Text="22:使用物品" />
-                        <TextBlock Text="32:练功区掉落物品" />
-                        <TextBlock Text="34:练功区战斗计场次" />
-                        <TextBlock Text="35:练功区战斗计数量" />
-                        <TextBlock Text="50:无条件" />
-                        <TextBlock Text="54:步数触发" />
-                        <TextBlock Text="56:区域触发\护送" />
-                        <TextBlock Text="40:NPC战斗" />
-                        <TextBlock Text="58:等级限制任务" />
-                        <TextBlock Text="59:特殊类型" />
-                    </StackPanel>
-                </Expander.Content>
-            </Expander>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="35" />
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" />
+        <avalonDock:DockingManager Grid.Row="1" x:Name="DManager">
+            <avalonDock:DockingManager.Theme>
+                <!--<avalonDock:AeroTheme />-->
+                <!--<avalonDock:VS2010Theme />-->
+                <!--<avalonDock:Office2007BlackTheme />-->
+                <!--<avalonDock:Office2007BlueTheme />-->
+                <avalonDock:Office2007SilverTheme />
+                <!--<avalonDock:GenericTheme />-->
+                <!--<avalonDock:MetroTheme />-->
+                <!--<avalonDock:Windows10Theme />-->
+            </avalonDock:DockingManager.Theme>
+            <avalonDock:LayoutRoot>
+                <avalonDock:LayoutPanel>
+                    <avalonDock:LayoutAnchorablePaneGroup DockWidth="*">
+                        <avalonDock:LayoutAnchorablePane>
+                            <avalonDock:LayoutAnchorable Title="任务列表" ContentId="任务列表">
+                                <Grid MinWidth="200">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <TextBox Margin="3" Grid.Row="0"  Name="SearchTextBar" />
+                                    <DataGrid  Grid.Row="1" Name="MissionDataGrid"  AutoGenerateColumns="False" CanUserDeleteRows="False" CanUserAddRows="False" CanUserSortColumns="False" SelectionMode="Single" SelectionChanged="MissionDataGrid_OnSelectionChanged">
+                                        <DataGrid.Columns>
+                                            <DataGridTextColumn CanUserResize="False" Width="*" Binding="{Binding Path=MissionID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="任务ID" />
+                                            <DataGridTextColumn CanUserResize="False" Width="1.5*" Binding="{Binding Path=MissionName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="任务名称" />
+                                            <DataGridTextColumn CanUserResize="False" Width="1.2*" Binding="{Binding Path=MissionTypeString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="任务类型" />
+                                        </DataGrid.Columns>
+                                    </DataGrid>
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                            <avalonDock:LayoutAnchorable  Title="任务限制需求设定" ContentId="任务限制需求设定">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="3" VerticalAlignment="Center"  Text="等级限制" />
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center"   Text="转生等级限制" />
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Margin="3" VerticalAlignment="Center"   Text="任务需求" />
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="3" VerticalAlignment="Center"   Text="角色需求" />
+                                    <TextBox  Grid.Row="0" Grid.Column="1" Margin="3" Name="MinLevelTextBox" />
+                                    <TextBox  Grid.Row="0" Grid.Column="2" Margin="3"  Name="MaxLevelTextBox" />
+                                    <TextBox  Grid.Row="1" Grid.Column="1" Margin="3"  Name="TransMinLevelTextBox" />
+                                    <TextBox  Grid.Row="1" Grid.Column="2" Margin="3"  Name="TransMaxLevelTextBox" />
+                                    <ListBox  Grid.Row="2" Grid.Column="1" Margin="3"  Grid.ColumnSpan="2" Name="RequestMissionListBox">
+                                    </ListBox>
+                                    <ListBox  Grid.Row="3" Grid.Column="1" Margin="3"  Grid.ColumnSpan="2" Name="RequestRoleIDListBox" />
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                        </avalonDock:LayoutAnchorablePane>
+                    </avalonDock:LayoutAnchorablePaneGroup>
+                    <avalonDock:LayoutAnchorablePaneGroup DockWidth="*">
+                        <avalonDock:LayoutAnchorablePane>
+                            <avalonDock:LayoutAnchorable Title="任务触发">
+                                <Grid Name="MissionPropertiesGrid">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="0" Grid.Column="0" Text="触发类型" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="1" Grid.Column="0" Text="NpcID" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="2" Grid.Column="0" Text="场景" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="3" Grid.Column="0" Text="场景区域" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="3" Grid.Column="1" Text="左上" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="4" Grid.Column="1" Text="右下" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="5" Grid.Column="0" Text="回收物品数量" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="5" Grid.Column="2" Text="回收物品" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="6" Grid.Column="0" Text="最少结束步骤" />
+                                    <TextBlock Margin="3"  VerticalAlignment="Center"  Grid.Row="6" Grid.Column="2" Text="单步结束概率" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="7" Grid.Column="0" Text="最大结束步骤" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="7" Grid.Column="2" Text="可否组队完成" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="8" Grid.Column="0" Text="限时时间（分钟）" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="9" Grid.Column="0" Text="是否重新计时" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="10" Grid.Column="0" Text="回收金钱数量" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="10" Grid.Column="2" Text="回收宠物ID" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="11" Grid.Column="0" Text="使用物品ID" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"   Grid.Row="11" Grid.Column="2" Text="其他方式" />
 
-            <TextBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoNpcIDTextBox" />
-            <TextBox Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMapIDTextBox" />
-            <TextBox Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Name="ActiveInfoLeftPosTextBox" />
-            <TextBox Grid.Row="3" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTopPosTextBox" />
-            <TextBox Grid.Row="4" Grid.Column="2" VerticalAlignment="Top" Name="ActiveInfoRightPosTextBox" />
-            <TextBox Grid.Row="4" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoBottomPosTextBox" />
-            <TextBox Grid.Row="5" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTargetIDTextBox" />
-            <TextBox Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoTargetNumTextBox" />
-            <TextBox Grid.Row="6" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMiniStepTextBox" />
-            <TextBox Grid.Row="6" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoStepProbabilityTextBox" />
-            <TextBox Grid.Row="7" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMaxStepTextBox" />
-            <Expander Grid.Row="7" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTeamStateExpander" />
-            <TextBox Grid.Row="8" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoTimeLimitTextBox" />
-            <TextBox Grid.Row="9" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoIsRestartTimerTextBox" />
-            <TextBox Grid.Row="10" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoGiveBackMoneyTextBox" />
-            <TextBox Grid.Row="10" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoGiveBackPetIDTextBox" />
-            <TextBox Grid.Row="11" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoUseItemIDTextBox" />
-            <TextBox Grid.Row="11" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoOtherTypeTextBox" />
-        </Grid>
-    </DockPanel>
+                                    <ComboBox Margin="3"  Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Height="24" Name="MissionTypeComboBox" DropDownClosed="MissionTypeComboBox_OnDropDownClosed">
+                                        <ComboBoxItem Content="10:点击NPC" />
+                                        <ComboBoxItem Content="11:给予金钱" />
+                                        <ComboBoxItem Content="12:给予物品" />
+                                        <ComboBoxItem Content="13:给予宠物" />
+                                        <ComboBoxItem Content="17:答题" />
+                                        <ComboBoxItem Content="22:使用物品" />
+                                        <ComboBoxItem Content="32:练功区掉落物品" />
+                                        <ComboBoxItem Content="34:练功区战斗计场次" />
+                                        <ComboBoxItem Content="35:练功区战斗计数量" />
+                                        <ComboBoxItem Content="50:无条件" />
+                                        <ComboBoxItem Content="54:步数触发" />
+                                        <ComboBoxItem Content="56:区域触发\护送" />
+                                        <ComboBoxItem Content="40:NPC战斗" />
+                                        <ComboBoxItem Content="58:等级限制任务" />
+                                        <ComboBoxItem Content="59:特殊类型" />
+                                    </ComboBox>
+                                    <TextBox Margin="3"  Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoNpcIDTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMapIDTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="3" Grid.Column="2" VerticalAlignment="Top" Name="ActiveInfoLeftPosTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="3" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTopPosTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="4" Grid.Column="2" VerticalAlignment="Top" Name="ActiveInfoRightPosTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="4" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoBottomPosTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="5" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTargetIDTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoTargetNumTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="6" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMiniStepTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="6" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoStepProbabilityTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="7" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoMaxStepTextBox" />
+                                    <ComboBox Margin="3"  Grid.Row="7" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoTeamStateComboBox" DropDownClosed="ActiveInfoTeamStateComboBox_OnDropDownClosed">
+                                        <ComboBoxItem Content="Yes" />
+                                        <ComboBoxItem Content="No" />
+                                        <ComboBoxItem Content="Both" />
+                                    </ComboBox>
+                                    <TextBox Margin="3"  Grid.Row="8" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoTimeLimitTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="9" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoIsRestartTimerTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="10" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoGiveBackMoneyTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="10" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoGiveBackPetIDTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="11" Grid.Column="1" VerticalAlignment="Top" Name="ActiveInfoUseItemIDTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="11" Grid.Column="3" VerticalAlignment="Top" Name="ActiveInfoOtherTypeTextBox" />
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                        </avalonDock:LayoutAnchorablePane>
+                        <avalonDock:LayoutAnchorablePane>
+                            <avalonDock:LayoutAnchorable Title="任务栏编辑">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="35" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Text="描述" />
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Text="目的" />
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="追踪" />
+                                    <TextBox  Grid.Row="0" Grid.Column="1" TextWrapping="WrapWithOverflow" Name="TaskInfoDescriptionListATextBox" />
+                                    <TextBox  Grid.Row="1" Grid.Column="1" TextWrapping="WrapWithOverflow" Name="TaskInfoPurposeListATextBox" />
+                                    <TextBox  Grid.Row="2" Grid.Column="1" TextWrapping="WrapWithOverflow" Name="TaskInfoTraceListATextBox" />
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                            <avalonDock:LayoutAnchorable Title="答题编辑">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="55" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="3" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Text="正确答案" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" Text="错误选项" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="6" Grid.Column="0" Text="对话NPC" />
+                                    <TextBox Margin="3" Grid.Row="0" Grid.Column="1" Name="QuestionInfoCorrectAnswerTextBox" />
+                                    <TextBox Margin="3" Grid.Row="1" Grid.Column="1" Name="QuestionInfoWrongAnswerList0" />
+                                    <TextBox Margin="3" Grid.Row="2" Grid.Column="1" Name="QuestionInfoWrongAnswerList1" />
+                                    <TextBox Margin="3" Grid.Row="3" Grid.Column="1" Name="QuestionInfoWrongAnswerList2" />
+                                    <TextBox Margin="3" Grid.Row="4" Grid.Column="1" Name="QuestionInfoWrongAnswerList3" />
+                                    <TextBox Margin="3" Grid.Row="5" Grid.Column="1" Name="QuestionInfoWrongAnswerList4" />
+                                    <TextBox Margin="3" Grid.Row="6" Grid.Column="1" Name="QuestionInfoNpcIDTextBox" />
+                                    <Image Margin="3" Grid.Row="7" Grid.Column="0" Name="QuestionInfoNpcIDImage" />
+                                    <TextBox Margin="3" Grid.Row="7" Grid.Column="1" Name="QuestionInfoConversionTextBox" />
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                            <avalonDock:LayoutAnchorable Title="练功区战斗编辑">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="3" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Text="练功区分类" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="1" Grid.Column="0" Text="场景区域" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="2" Grid.Column="0" Text="掉落几率" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="2" Grid.Column="2" Text="单位：万分之一" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="3" Grid.Column="0" Text="战斗次数" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="4" Grid.Column="0" Text="怪物数量" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="5" Grid.Column="0" Text="掉落物品ID" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="5" Grid.Column="2" Text="掉落物品数量" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="6" Grid.Column="0" Text="怪物种类" />
+                                    <ComboBox Margin="3"  Grid.Row="0" Grid.Column="1" Name="BattleInfoBattleMapTypeComboBox" DropDownClosed="BattleInfoBattleMapTypeComboBox_OnDropDownClosed">
+                                        <ComboBoxItem Content="明雷区" />
+                                        <ComboBoxItem Content="暗雷区" />
+                                    </ComboBox>
+                                    <TextBox Margin="3"  Grid.Row="1" Grid.Column="1" Name="BattleInfoBattleZoneIDTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="2" Grid.Column="1" Name="BattleInfoDropTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="3" Grid.Column="1" Name="BattleInfoBattleTimesTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="4" Grid.Column="1" Name="BattleInfoMonsterNumTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="5" Grid.Column="1" Name="BattleInfoDropItemIDTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="5" Grid.Column="3" Name="BattleInfoDropItemNumTextBox" />
+                                    <ListBox Margin="3"  Grid.Row="6" Grid.Column="1" Name="BattleInfoMonsterListBox" />
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                            <avalonDock:LayoutAnchorable Title="NPC战斗AI编辑">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="3" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Text="战斗AI" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="1" Grid.Column="0" Text="结果要求" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="2" Grid.Column="0" Text="是否死亡惩罚" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="3" Grid.Column="0" Text="战斗难度等级" />
+                                    <TextBox Margin="3"  Grid.Row="0" Grid.Column="1" Name="AIInfoAIIDTextBox" />
+                                    <ComboBox Margin="3"  Grid.Row="1" Grid.Column="1" Name="AIInfoTeamSteateComboBox" DropDownClosed="AIInfoTeamSteateComboBox_OnDropDownClosed">
+                                        <ComboBoxItem Content="要求胜利" />
+                                        <ComboBoxItem Content="均可" />
+                                    </ComboBox>
+                                    <ComboBox Margin="3"  Grid.Row="2" Grid.Column="1" Name="AIInfoDeathPunishComboBox" DropDownClosed="AIInfoDeathPunishComboBox_OnDropDownClosed">
+                                        <ComboBoxItem Content="0:不接受" />
+                                        <ComboBoxItem Content="1:接受" />
+                                    </ComboBox>
+                                    <TextBox Margin="3"  Grid.Row="3" Grid.Column="1" Name="AIInfoBattleLevelTextBox" />
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                        </avalonDock:LayoutAnchorablePane>
+                    </avalonDock:LayoutAnchorablePaneGroup>
+                    <avalonDock:LayoutAnchorablePaneGroup  DockWidth="*">
+                        <avalonDock:LayoutAnchorablePane>
+                            <avalonDock:LayoutAnchorable Title="任务结果奖励" FloatingWidth="400">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Margin="3" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" Text="后置任务" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="1" Grid.Column="0" Text="变身造型" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="2" Grid.Column="0" Text="显示NPC" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="3" Grid.Column="0" Text="透明框提示" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="6" Grid.Column="0" Text="经验奖励" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="6" Grid.Column="2" Text="金钱奖励" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="7" Grid.Column="0" Text="宠物经验" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="7" Grid.Column="2" Text="储备金奖励" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="8" Grid.Column="0" Text="历练声望" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" Text="  物品ID                 数量                名称                     造型    绑定" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="13" Grid.Column="0" Text="跳转方式" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="13" Grid.Column="2" Text="进度条时间" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="14" Grid.Column="0" Text="地图" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="14" Grid.Column="2" Text="进度条文字" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="15" Grid.Column="0" Text="X坐标" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="15" Grid.Column="2" Text="进度条颜色" />
+                                    <TextBlock Margin="3" VerticalAlignment="Center"  Grid.Row="16" Grid.Column="0" Text="Y坐标" />
+                                    <ListBox Margin="3"  Grid.Row="0" Grid.Column="1" Name="PostMissionListBox" />
+                                    <TextBox Margin="3"  Grid.Row="1" Grid.Column="1" Name="TransformIDTextBox" />
+                                    <ListBox Margin="3"  Grid.Row="2" Grid.Column="1" Name="DisPlayNPCIDListBox"  MaxHeight="100" />
+                                    <TextBox Margin="3"  Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" TextWrapping="Wrap" Name="NoteInfoTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="6" Grid.Column="1" Name="ExpRewardTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="6" Grid.Column="3" Name="MoneyRewardTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="7" Grid.Column="1" Name="PetExpRewardTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="7" Grid.Column="3" Name="SMoneyTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="8" Grid.Column="1" Name="ShengWangTextBox" />
+
+                                    <ListBox  Grid.Row="10"  Grid.RowSpan="2" Grid.Column="0" Grid.ColumnSpan="4" MinHeight="100" Name="RewardItemListbox">
+                                    </ListBox>
+                                    <ComboBox Margin="3"  Grid.Row="13" Grid.Column="1" Name="RewardMapJumpTypeComboBox" DropDownClosed="RewardMapJumpTypeComboBox_OnDropDownClosed">
+                                        <ComboBoxItem Content="无" />
+                                        <ComboBoxItem Content="传送" />
+                                        <ComboBoxItem Content="飞行" />
+                                        <ComboBoxItem Content="副本" />
+                                    </ComboBox>
+                                    <TextBox Margin="3"  Grid.Row="13" Grid.Column="3" Name="ProcessBarTimeTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="14" Grid.Column="1" Name="RewardMapIDTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="14" Grid.Column="3" Name="ProcessBarTextTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="15" Grid.Column="1" Name="RewardMapXPosTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="15" Grid.Column="3" Name="ProcessBarColorTextBox" />
+                                    <TextBox Margin="3"  Grid.Row="16" Grid.Column="1" Name="RewardMapYPosTextBox" />
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                        </avalonDock:LayoutAnchorablePane>
+                    </avalonDock:LayoutAnchorablePaneGroup>
+                    <avalonDock:LayoutAnchorablePaneGroup  DockWidth="*">
+                        <avalonDock:LayoutAnchorablePane>
+                            <avalonDock:LayoutAnchorable Title="剧情编辑">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <ListBox Grid.Row="0" Name="ScenarioInfoNpcConversationListBox">
+                                    </ListBox>
+                                    <GridSplitter Grid.Row="1" Height="3" HorizontalAlignment="Stretch" />
+                                    <ListBox Grid.Row="2" Name="ScenarioInfoFinishConversationListBox">
+                                    </ListBox>
+                                </Grid>
+                            </avalonDock:LayoutAnchorable>
+                        </avalonDock:LayoutAnchorablePane>
+                    </avalonDock:LayoutAnchorablePaneGroup>
+                </avalonDock:LayoutPanel>
+            </avalonDock:LayoutRoot>
+        </avalonDock:DockingManager>
+
+        <StatusBar Grid.Row="2" Height="35">
+            <Button Content="保存" Height="25" VerticalAlignment="Top" Width="75" MouseUp="SaveButton_click" />
+            <Button Content="保存全部" Height="25" VerticalAlignment="Top" Width="75" MouseUp="SaveAllButton_click" />
+        </StatusBar>
+    </Grid>
 </Window>

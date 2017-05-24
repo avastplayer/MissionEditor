@@ -1,14 +1,17 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MissionEditor" GeneratedClassName="Settings">
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="MissionEditor.Properties" GeneratedClassName="Path">
   <Profiles />
   <Settings>
     <Setting Name="ConfigFolderPath" Type="System.String" Scope="User">
       <Value Profile="(Default)">D:\ProjectResource\autoconfig\</Value>
     </Setting>
     <Setting Name="ImageFolderPath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">D:\ProjectResource\imagesets\</Value>
+      <Value Profile="(Default)">D:\ProjectResource\00UI\</Value>
     </Setting>
-    <Setting Name="ItemAttrName" Type="System.String" Scope="User">
+    <Setting Name="MissionFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\ProjectResource\z主线任务.xlsx</Value>
+    </Setting>
+    <Setting Name="ItemAttrFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">knight.gsp.item.citemattr.xml</Value>
     </Setting>
     <Setting Name="NpcConfigFileName" Type="System.String" Scope="User">
@@ -18,10 +21,14 @@
       <Value Profile="(Default)">knight.gsp.npc.cnpcshape.xml</Value>
     </Setting>
     <Setting Name="MapConfigFileName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">knight.gsp.map.cmapconfig.xml</Value>
+      <Value Profile="(Default)">knight.gsp.map.cmapconfig.xml
+</Value>
     </Setting>
-    <Setting Name="HeadImageset" Type="System.String" Scope="User">
-      <Value Profile="(Default)">roleandmonster</Value>
+    <Setting Name="HeadImageFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">大头像</Value>
+    </Setting>
+    <Setting Name="ItemIconFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Item</Value>
     </Setting>
   </Settings>
 </SettingsFile>

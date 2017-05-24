@@ -8,16 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MissionEditor {
+namespace MissionEditor.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.1.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class Path : global::System.Configuration.ApplicationSettingsBase {
         
-        private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
+        private static Path defaultInstance = ((Path)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Path())));
         
-        public static Settings Default {
+        public static Path Default {
             get {
                 return defaultInstance;
             }
@@ -37,7 +37,7 @@ namespace MissionEditor {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("D:\\ProjectResource\\imagesets\\")]
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\ProjectResource\\00UI\\")]
         public string ImageFolderPath {
             get {
                 return ((string)(this["ImageFolderPath"]));
@@ -49,13 +49,25 @@ namespace MissionEditor {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("knight.gsp.item.citemattr.xml")]
-        public string ItemAttrName {
+        [global::System.Configuration.DefaultSettingValueAttribute("D:\\ProjectResource\\z主线任务.xlsx")]
+        public string MissionFilePath {
             get {
-                return ((string)(this["ItemAttrName"]));
+                return ((string)(this["MissionFilePath"]));
             }
             set {
-                this["ItemAttrName"] = value;
+                this["MissionFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("knight.gsp.item.citemattr.xml")]
+        public string ItemAttrFileName {
+            get {
+                return ((string)(this["ItemAttrFileName"]));
+            }
+            set {
+                this["ItemAttrFileName"] = value;
             }
         }
         
@@ -85,7 +97,7 @@ namespace MissionEditor {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("knight.gsp.map.cmapconfig.xml")]
+        [global::System.Configuration.DefaultSettingValueAttribute("knight.gsp.map.cmapconfig.xml\r\n")]
         public string MapConfigFileName {
             get {
                 return ((string)(this["MapConfigFileName"]));
@@ -97,13 +109,25 @@ namespace MissionEditor {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("roleandmonster")]
-        public string HeadImageset {
+        [global::System.Configuration.DefaultSettingValueAttribute("大头像")]
+        public string HeadImageFileName {
             get {
-                return ((string)(this["HeadImageset"]));
+                return ((string)(this["HeadImageFileName"]));
             }
             set {
-                this["HeadImageset"] = value;
+                this["HeadImageFileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Item")]
+        public string ItemIconFileName {
+            get {
+                return ((string)(this["ItemIconFileName"]));
+            }
+            set {
+                this["ItemIconFileName"] = value;
             }
         }
     }
