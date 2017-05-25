@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:extToolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit/extended"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1024">
     <Grid>
@@ -16,16 +17,8 @@
         <avalonDock:DockingManager Grid.Row="1" x:Name="DManager">
             <avalonDock:DockingManager.Theme>
                 <!--<avalonDock:AeroTheme />-->
-                <!--<avalonDock:VS2010Theme />-->
-                <!--<avalonDock:Office2007BlackTheme />-->
-                <!--<avalonDock:Office2007BlueTheme />-->
-                <!--<avalonDock:Office2007SilverTheme />-->
-                <!--<avalonDock:GenericTheme />-->
+                <avalonDock:VS2010Theme />
                 <!--<avalonDock:MetroTheme />-->
-                <!--<avalonDock:Windows10Theme />-->
-                <!--<avalonDock:Vs2013BlueTheme />-->
-                <!--<avalonDock:Vs2013DarkTheme />-->
-                <avalonDock:Vs2013LightTheme />
             </avalonDock:DockingManager.Theme>
             <avalonDock:LayoutRoot>
                 <avalonDock:LayoutRoot.LeftSide>
