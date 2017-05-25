@@ -20,8 +20,6 @@ namespace MissionEditor
 
         public MainWindow()
         {
-            DataProcess dataProcess = new DataProcess();
-            dataProcess.GetFieldInfos();
             InitializeComponent();
 
             MissionDataGrid.ItemsSource = AssetManager.MissionDatatable.DefaultView;
@@ -175,7 +173,7 @@ namespace MissionEditor
                 {
                     string conversation = AssetManager.MissionDatatable.Rows[SelectDataRow]["ScenarioInfoNpcConversationList" + i].ToString();
                     AssetManager.GetNpcInfo(npcId, out string npcName, out BitmapSource headBitmapSource);
-                    ScenarioInfoNpcConversationListBox.Items.Add(new ConversationCell(npcName, headBitmapSource, conversation, ScenarioInfoNpcConversationListBox.ActualWidth - 5));
+                    ScenarioInfoNpcConversationListBox.Items.Add(new ConversationCell(npcName, headBitmapSource, conversation, ScenarioInfoNpcConversationListBox.ActualWidth));
                 }
             }
         }
@@ -189,7 +187,7 @@ namespace MissionEditor
                 {
                     string conversation = AssetManager.MissionDatatable.Rows[SelectDataRow]["ScenarioInfoFinishConversationList" + i].ToString();
                     AssetManager.GetNpcInfo(npcId, out string npcName, out BitmapSource headBitmapSource);
-                    ScenarioInfoFinishConversationListBox.Items.Add(new ConversationCell(npcName, headBitmapSource, conversation, ScenarioInfoFinishConversationListBox.ActualWidth - 5));
+                    ScenarioInfoFinishConversationListBox.Items.Add(new ConversationCell(npcName, headBitmapSource, conversation, ScenarioInfoFinishConversationListBox.ActualWidth));
                 }
             }
         }
@@ -206,7 +204,7 @@ namespace MissionEditor
                     AssetManager.GetItemInfo(itemId, out string itemName, out int itemIcon);
                     BitmapSource itemIconSource =
                         AssetManager.GetImage(AssetManager.ItemIconFileName, itemIcon.ToString());
-                    RewardItemListbox.Items.Add(new AwardItemCell(itemId.ToString(), itemNum, itemName, itemIconSource, itemIsBind, RewardItemListbox.ActualWidth - 5));
+                    RewardItemListbox.Items.Add(new AwardItemCell(itemId.ToString(), itemNum, itemName, itemIconSource, itemIsBind, RewardItemListbox.ActualWidth));
                 }
             }
         }
