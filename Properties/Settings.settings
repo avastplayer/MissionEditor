@@ -21,8 +21,7 @@
       <Value Profile="(Default)">knight.gsp.npc.cnpcshape.xml</Value>
     </Setting>
     <Setting Name="MapConfigFileName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">knight.gsp.map.cmapconfig.xml
-</Value>
+      <Value Profile="(Default)">knight.gsp.map.cmapconfig.xml</Value>
     </Setting>
     <Setting Name="HeadImageFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">大头像</Value>

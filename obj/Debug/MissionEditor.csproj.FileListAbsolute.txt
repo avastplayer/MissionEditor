@@ -20,3 +20,5 @@ D:\Project\MissionEditor\MissionEditor\obj\Debug\MissionEditor.csproj.GenerateRe
 D:\Project\MissionEditor\MissionEditor\obj\Debug\MissionEditor.exe
 D:\Project\MissionEditor\MissionEditor\obj\Debug\MissionEditor.pdb
 D:\Project\MissionEditor\MissionEditor\obj\Debug\MissionEditor.csproj.CoreCompileInputs.cache
+D:\Project\MissionEditor\MissionEditor\obj\Debug\OptionsWindow.g.cs
+D:\Project\MissionEditor\MissionEditor\obj\Debug\OptionsWindow.baml

@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Project\MissionEditor\MissionEditor\App.xaml
-41092258416
+51301857329
 
-24675142867
+261064787198
 30-843166030
-ListBoxEditor.xaml;RewardItemCell.xaml;ConversationCell.xaml;MainWindow.xaml;
+ListBoxEditor.xaml;RewardItemCell.xaml;ConversationCell.xaml;MainWindow.xaml;OptionsWindow.xaml;
 
-False
+True
 

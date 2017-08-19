@@ -111,11 +111,15 @@
     <Compile Include="MissionResultEditor.cs" />
     <Compile Include="MissionTaskBarEditor.cs" />
     <Compile Include="MissionTriggeredEditor.cs" />
+    <Compile Include="OptionsEditor.cs" />
     <Compile Include="RewardItemCell.xaml.cs" />
     <Compile Include="ConversationCell.xaml.cs" />
     <Compile Include="ConfigManager.cs" />
     <Compile Include="DatatableManager.cs" />
     <Compile Include="ExcelManager.cs" />
+    <Compile Include="OptionsWindow.xaml.cs">
+      <DependentUpon>OptionsWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TempletManager.cs" />
     <Compile Include="TgaDecoder.cs" />
     <Page Include="ListBoxEditor.xaml" />
@@ -133,6 +137,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="OptionsWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

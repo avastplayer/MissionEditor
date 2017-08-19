@@ -454,7 +454,8 @@ namespace MissionEditor
 
         private void SetButton_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            OptionsWindow optionsWindow = new OptionsWindow();
+            optionsWindow.ShowDialog();
         }
 
         private void ExportGbeans_OnClick(object sender, RoutedEventArgs e)
