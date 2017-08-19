@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LayoutRoot xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <RootPanel Orientation="Horizontal">
+    <LayoutAnchorablePaneGroup Orientation="Vertical">
+      <LayoutAnchorablePane DockHeight="0.972944849115505*">
+        <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="任务列表" IsSelected="True" ContentId="任务列表" FloatingWidth="400" LastActivationTimeStamp="06/02/2017 22:51:24" />
+      </LayoutAnchorablePane>
+      <LayoutAnchorablePane DockHeight="1.0270551508845*">
+        <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="任务限制需求设定" IsSelected="True" ContentId="任务限制需求设定" FloatingWidth="400" />
+      </LayoutAnchorablePane>
+    </LayoutAnchorablePaneGroup>
+    <LayoutAnchorablePaneGroup Orientation="Vertical">
+      <LayoutAnchorablePane>
+        <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="任务触发" IsSelected="True" ContentId="任务触发" FloatingWidth="400" />
+        <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="任务结果奖励" ContentId="任务结果奖励" FloatingWidth="400" />
+      </LayoutAnchorablePane>
+    </LayoutAnchorablePaneGroup>
+    <LayoutAnchorablePane>
+      <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="剧情编辑" IsSelected="True" ContentId="剧情编辑" FloatingWidth="400" />
+    </LayoutAnchorablePane>
+  </RootPanel>
+  <TopSide />
+  <RightSide>
+    <LayoutAnchorGroup>
+      <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="任务栏编辑" ContentId="任务栏编辑" FloatingWidth="400" />
+      <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="答题编辑" ContentId="答题编辑" FloatingWidth="400" />
+      <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="练功区战斗编辑" ContentId="练功区战斗编辑" FloatingWidth="400" />
+      <LayoutAnchorable AutoHideWidth="400" AutoHideMinWidth="100" AutoHideMinHeight="100" Title="NPC战斗AI编辑" ContentId="NPC战斗AI编辑" FloatingWidth="400" />
+    </LayoutAnchorGroup>
+  </RightSide>
+  <LeftSide />
+  <BottomSide />
+  <FloatingWindows />
+  <Hidden />
+</LayoutRoot>

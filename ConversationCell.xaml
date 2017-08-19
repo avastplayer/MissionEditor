@@ -1,0 +1,21 @@
+<UserControl x:Class="MissionEditor.ConversationCell"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MissionEditor"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d"
+             d:DesignHeight="100" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="10" VerticalAlignment="Center">
+            <Image Height="64" Width="64" Name="NPCHeadImage" />
+            <TextBox Height="25" TextAlignment="Center" Name="NPCNameTextBox" />
+        </StackPanel>
+        <TextBox Grid.Column="1" Margin="10" Name="Conversation" Padding="10" />
+    </Grid>
+</UserControl>
